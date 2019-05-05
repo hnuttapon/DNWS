@@ -196,13 +196,13 @@ namespace DNWS
                 context.SaveChanges();
             }
         }
-
+    
         public static bool Check_Username(string name)
         {
             using (var context = new TweetContext())
             {
-                List<User> userlist = context.Users.Where(b => b.Name.Equals(name)).ToList();
-                if (userlist.Count == 1)
+                List<User> userlist = context.Users.Where(b => b.Name.Equals(name)).ToList(); 
+                if (userlist.Count == 1) //check if there is any user in the list
                 {
                     return true;
                 }
