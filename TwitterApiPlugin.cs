@@ -12,31 +12,6 @@ namespace DNWS
 {
     class TwitterApiPlugin : TwitterPlugin
     {
-        public string[] Test()
-        {
-            return new string[]
-            {
-                "Hello,",
-                "World!"
-            };
-        }
-
-        public List<User> GetAllUsers()
-        {
-            using (var context = new TweetContext())
-            {
-                try
-                {
-                    List<User> users = context.Users.Where(b => true).Include(b => b.Following).ToList();
-                    return users;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
-        }
-
         public List<Following> GetFollowing(string name)
         {
             using (var context = new TweetContext())
@@ -45,6 +20,22 @@ namespace DNWS
                 {
                     List<User> followings = context.Users.Where(b => b.Name.Equals(name)).Include(b => b.Following).ToList();
                     return followings[0].Following;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<User> Get_All_User()
+        {
+            using (var context = new TweetContext())
+            {
+                try
+                {
+                    List<User> users = context.Users.Where(b => true).Include(b => b.Following).ToList();
+                    return users;
                 }
                 catch (Exception)
                 {
@@ -67,7 +58,7 @@ namespace DNWS
                 //cases for each method
                 if (request.Method == "GET")
                 {
-                    string json = JsonConvert.SerializeObject(GetAllUsers());
+                    string json = JsonConvert.SerializeObject(Get_All_User());
                     response.body = Encoding.UTF8.GetBytes(json);
                 }
                 if (request.Method == "POST")
