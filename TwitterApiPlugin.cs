@@ -47,11 +47,12 @@ namespace DNWS
         public override HTTPResponse GetResponse(HTTPRequest request) //OVERRIDE GetResponse function
         {
             HTTPResponse response = new HTTPResponse(200);
-            string username = request.getRequestByKey("user");
+            //get request and store value
+            string username = request.getRequestByKey("user"); 
             string password = request.getRequestByKey("password");
             string following = request.getRequestByKey("follow");
             string message = request.getRequestByKey("message");
-            string[] Choose = request.Filename.Split("?");
+            string[] Choose = request.Filename.Split("?"); 
             //Determine between users and following
             if (Choose[0] == "users")
             {
@@ -166,7 +167,7 @@ namespace DNWS
                 }
             }
             response.type = "application/json";
-            return response;
+            return response; 
         }
     }
 }
