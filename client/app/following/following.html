@@ -1,9 +1,11 @@
 <div class="container">
     <h4>My Following</h4>
     <ul class="list-group">
-      <li ng-repeat="following in $ctrl.followings" class="list-group-item">
-        <b>{{following.Name}}</b> <a href="">[unfollow]</a>
-      </li>
+        <li ng-repeat="following in $ctrl.followings" class="list-group-item">
+            <b>{{following.Name}}</b> 
+            <input type="submit" value = "unfollow" ng-click="$ctrl.sendunfollowing(following.Name)" />
+        </li>
     </ul>
-    Add new follow <input type="text" /> <input type="submit" />
-  </div>
+    Add new follow <input type="text" ng-model=$ctrl.followingname /> </textarea>
+    <input type="submit" ng-click="$ctrl.sendfollowing($ctrl.followingname)" />
+</div>
